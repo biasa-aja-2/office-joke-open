@@ -10,6 +10,12 @@ trying to leave -- the office's way of rewarding initiative, by giving
 you the job nobody wanted. Specific detail (reply-all), a turn that
 lands in the last few words, no setup wasted, no pun, no complaint
 about work in general.
+
+The reply-all thread is the perfect office trap: the harder you try to
+leave, the more the system rewards you with responsibility. The joke
+works because the promotion is both absurd and instantly recognisable
+to anyone who has ever been CC'd on a thread they never asked to join.
+The admin title is the punchline -- a job, not an escape.
 """
 
 import os
@@ -39,6 +45,10 @@ def problems_with(text):
         )
     if not text.strip():
         problems.append("entry is blank")
+    if text != text.rstrip():
+        problems.append("entry ends with trailing whitespace")
+    if text != text.lstrip():
+        problems.append("entry starts with leading whitespace")
     if any(ch in text for ch in "\r\n"):
         problems.append("entry spans more than one line")
     return problems
